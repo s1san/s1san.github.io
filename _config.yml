@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "neon" # "default", "air", "aqua", "contrast", "dark", "dirt", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "sunrise"  # "default", "air", "aqua", "contrast", "dark", "dirt", "mint", "plum", "neon"
 
 # Site Settings
 locale                   : "en-US"
@@ -20,7 +20,7 @@ title                    : "s1san's blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "s1san"
-description              : "An amazing website."
+description              : "s1san's blog"
 url                      : "https://s1san.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -107,7 +107,7 @@ author:
   name             : "s1san"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "awesome."
-  location         : "china"
+  location         : "unknown"
   email            :
   links:
     - label: "Email"
