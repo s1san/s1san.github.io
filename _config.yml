@@ -105,7 +105,7 @@ analytics:
 # Site Author
 author:
   name             : "s1san"
-  avatar           : "/assets/images/smile.jpg"
+  avatar           : # "/assets/images/smile.jpg"
   bio              : "awesome."
   location         : "unknown"
   email            :
@@ -156,6 +156,7 @@ footer:
 include:
   - .htaccess
   - _pages
+  - _posts
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
