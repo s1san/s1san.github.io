@@ -36,45 +36,55 @@ $$\begin{aligned}
 
 ### 曼德博集分形实现
 
-本文使用[SDL](https://github.com/libsdl-org/SDL)实现。
+本文使用[SDL](https://github.com/libsdl-org/SDL)实现，引入complex头文件进行复数的操作，代码主要分三部分：
 
-在主函数中，主要有两部分。
+* 初始化窗口与渲染器
+* 选取一个参数$c$
+* 判断$c$在迭代后是否在集合内
 
 ```c++
-    for (double i = 0.0; i < 1.0; i += 0.001) // 步长越小，图像越精细
-    {
-        for (double j = 0.0; j < 1.0; j += 0.001)
-        {
-            // 在每个位置上，通过 std::lerp 函数将屏幕上的像素位置映射到复平面上的实部。
-            // 范围在 [-2.0, 2.0] 中能更好的观察集合。
-            double x = std::lerp(-2.0, 2.0, i);
-            double y = std::lerp(-2.0, 2.0, j);
+// 初始化SDL
+SDL_Init(SDL_INIT_EVERYTHING);
+SDL_Window* window = nullptr;
+SDL_Renderer* renderer = nullptr;
+SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);
+SDL_RenderSetScale(renderer, 2, 2);
 
-            int res = in_set(std::complex< double >(x, y));
-            if (res == false) // 在集合内，将颜色设置为黑色
-            {
-                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-                SDL_RenderDrawPointF(renderer, i * width / 2, j * height / 2);
-            }
-            else
-            {
-                SDL_SetRenderDrawColor(renderer, 10 * res % 255, 10 * res % 255, 10 * res % 255, 255);
-                SDL_RenderDrawPointF(renderer, i * width / 2, j * height / 2);
-            }
+for (double i = 0.0; i < 1.0; i += 0.001) // 步长越小，图像越精细
+{
+    for (double j = 0.0; j < 1.0; j += 0.001)
+    {
+        // 在每个位置上，通过 std::lerp 函数将屏幕上的像素位置映射到复平面上的实部。
+        // 范围在 [-2.0, 2.0] 中能更好的观察集合。
+        double x = std::lerp(-2.0, 2.0, i);
+        double y = std::lerp(-2.0, 2.0, j);
+
+        int res = in_set(std::complex< double >(x, y));
+        if (res == false) // 在集合内，将颜色设置为黑色
+        {
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            SDL_RenderDrawPointF(renderer, i * width / 2, j * height / 2);
+        }
+        else
+        {
+            SDL_SetRenderDrawColor(renderer, 10 * res % 255, 10 * res % 255, 10 * res % 255, 255);
+            SDL_RenderDrawPointF(renderer, i * width / 2, j * height / 2);
         }
     }
+}
 ```
 
 在`in_set`函数中，按照曼德博集定义进行迭代，判断传入的参数是否在集合内。
 
 ```c++
 int in_set(std::complex< double > c)
-{    
-	std::complex< double > z(0, 0);
+{
+    std::complex< double > z(0, 0);
     for (int i = 0; i < 100; i++)
     {
         z = std::pow(z, 2) + c;
-        if (std::norm(z) > 10) // 如果大于10，则认为该点不属于Mandelbrot集合，返回当前迭代次数 i。
+        // 如果大于10，则认为该点不属于Mandelbrot集合，返回当前迭代次数 i。
+        if (std::norm(z) > 10)
         {
             return i;
         }
@@ -83,7 +93,7 @@ int in_set(std::complex< double > c)
 }
 ```
 
-本文章代码在[这里](https://github.com/s1san/sbr/tree/main/Fractal)
+本文代码在[这里](https://github.com/s1san/sbr/tree/main/Fractal)
 
 **references**
 
