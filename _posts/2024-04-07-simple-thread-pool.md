@@ -39,24 +39,26 @@ private:
 };
 ```
 
-`std::thread::hardware_concurrency()`用于获取系统支持的并发线程数，它返回一个`unsigned int` 类型的值，表示当前系统中可以并行执行的最大线程数量，具体的值取决于硬件平台、操作系统和编译器等因素。它返回的值可以作为线程池中线程数量的一个合理参考值，以便充分利用系统的多核处理能力，提高程序的并发性能。
+`std::thread::hardware_concurrency()`用于获取系统支持的并发线程数，它返回一个`unsigned int` 类型的值，表示当前系统中可以并行执行的最大线程数量，具体的值取决于硬件平台、操作系统和编译器等因素，可以作为线程池中线程数量的一个合理参考值。
 
-`enqueue`函数将任务添加到线程池中并执行，`template <class F, class... Args>`声明一个变长模板，`F &&f` 表示可调用对象 `f` 的引用，`Args &&...args` 表示参数包，用于接收可调用对象 `f` 的参数列表。使用右值引用 `&&` 是为了实现**完美转发**，可以保持参数的值类别不变，同时支持左值和右值的传递。随后指定模板函数的返回类型为 `std::future` 对象，用于获取任务的执行结果。 `typename std::result_of<F(Args...)>::type` 表示根据函数 `F` 和参数 `Args...` 推导出的结果类型。
+`enqueue`函数将任务添加到线程池中并执行，`template <class F, class... Args>`声明一个变长模板，`F &&f` 表示可调用对象 `f` 的引用，`Args &&...args` 表示参数包，用于接收可调用对象 `f` 的参数列表。使用右值引用 `&&` 是为了实现[完美转发](https://zhuanlan.zhihu.com/p/369203981)，可以保持参数的值类别不变，同时支持左值和右值的传递。
+
+随后指定模板函数的返回类型为 `std::future` 对象，用于获取任务的执行结果。 `typename std::result_of<F(Args...)>::type` 表示根据函数 `F` 和参数 `Args...` 推导出的结果类型。
 
 ### 构造函数实现
 
 ```c++
 inline ThreadPool::ThreadPool(size_t threads)
-    : stop(false)
+    : stop(false)	// 将stop初始化为false，表示线程池初始状态为未停止状态
 {
     for (size_t i = 0; i < threads; ++i)
     {
         workers.emplace_back(
             [this]
             {
-                for (;;)
+                for (;;)    // 在 lambda 表达式内部，线程将会执行一个无限循环，不断地从任务队列中取出任务并执行。
                 {
-                    std::function<void()> task;
+                    std::function<void()> task;    // 创建一个 std::function 对象 task，用于保存待执行的任务
 
                     {
                         std::unique_lock<std::mutex> lock(this->queue_mutex);
@@ -69,12 +71,16 @@ inline ThreadPool::ThreadPool(size_t threads)
                         this->tasks.pop();
                     }
 
-                    task();
+                    task();    // 执行任务
                 }
             });
     }
 }
 ```
+
+在 lambda 表达式里面 for 循环的代码块中，使用 `std::unique_lock` 对 `queue_mutex` 进行加锁，确保线程安全地访问任务队列。再调用 `condition` 条件变量的 [wait](https://en.cppreference.com/w/cpp/thread/condition_variable/wait) 函数，阻塞线程，直到线程池停止运行或者任务队列非空。
+
+如果线程池已经停止运行且任务队列为空，则退出循环，结束线程的执行。最后，将任务队列中的首个任务移动到 `task` 变量中，准备执行。
 
 ### `enqueue`函数实现
 
@@ -82,14 +88,17 @@ inline ThreadPool::ThreadPool(size_t threads)
 template <class F, class... Args>
 auto ThreadPool::enqueue(F &&f, Args &&...args) -> std::future<typename std::result_of<F(Args...)>::type>
 {
+    // 使用 std::result_of 获取 F(Args...) 的返回类型，并命名为 return_type
     using return_type = typename std::result_of<F(Args...)>::type;
+    
     auto task = std::make_shared<std::packaged_task<return_type()>>(
         std::bind(std::forward<F>(f), std::forward<Args>(args)...));
 
-    std::future<return_type> res = task->get_future();
+    std::future<return_type> res = task->get_future();    // 调用 get_future() 函数，获取任务执行的结果
     {
         std::unique_lock<std::mutex> lock(queue_mutex);
 
+        // 禁止在停止状态下添加任务。
         if (stop)
             throw std::runtime_error("enqueue on stopped ThreadPool");
 
@@ -103,6 +112,10 @@ auto ThreadPool::enqueue(F &&f, Args &&...args) -> std::future<typename std::res
 }
 ```
 
+`std::make_shared`接受一个模板参数`std::packaged_task<return_type()>`，并通过`std::bind`将可调用对象`f`和参数`args...`绑定到一起，生成一个函数对象来初始化`packaged_task`对象。该函数对象的类型是`std::packaged_task<return_type()>`，表示接受无参数并返回`return_type`类型的函数。
+
+`std::forward`函数保持参数的完美转发，确保传递给`std::bind`的参数保持原始的引用类型。
+
 ### 析构函数实现
 
 ```c++
@@ -113,16 +126,18 @@ inline ThreadPool::~ThreadPool()
         stop = true;
     }
 
-    condition.notify_all();
+    condition.notify_all();    // 通知所有线程，线程池已经停止运行
     for (std::thread &worker : workers)
         worker.join();
 }
 ```
 
+最后，在析构函数中，遍历所有线程，调用 `join()` 函数，等待线程执行完成，确保所有线程在退出之前都能正确地执行完毕。
+
 ### 测试代码实现
 
 ```c++
-ThreadPool pool(4);    // 线程池大小为4
+ThreadPool pool(4);    // 设线程池大小为4
 std::vector<std::future<int>> results;
 
 for (int i = 0; i < 16; ++i)
