@@ -4,7 +4,7 @@
 
 本文将使用C++且不依赖第三方库，实现一个基本的光线追踪。以下是最终效果：
 
-![final](https://raw.githubusercontent.com/s1san/s1san.github.io/master/assets/final.png)
+![final](../assets/image/spring2024/final.png)
 
 光线追踪通常包括以下步骤：
 
@@ -137,7 +137,7 @@ P6格式中的每个像素用RGB三原色来表示，每个颜色通道占据一
 
 你可以用Adobe Photoshop，[GIMP](https://www.gimp.org/)等软件打开ppm文件。若代码运行成功，你将看到如下图像：
 
-![out](../assets/image/out.jpg)
+![out](../assets/image/spring2024/out.jpg)
 
 > TEST IMAGE
 
