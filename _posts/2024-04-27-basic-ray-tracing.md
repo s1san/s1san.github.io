@@ -4,7 +4,7 @@
 
 本文将使用C++且不依赖第三方库，实现一个基本的光线追踪。以下是最终效果：
 
-![final](2024-04-27-basic-ray-tracing.assets/final.png)
+![final](../assets/image/final.png)
 
 光线追踪通常包括以下步骤：
 
@@ -137,7 +137,7 @@ P6格式中的每个像素用RGB三原色来表示，每个颜色通道占据一
 
 你可以用Adobe Photoshop，[GIMP](https://www.gimp.org/)等软件打开ppm文件。若代码运行成功，你将看到如下图像：
 
-![out](2024-04-27-basic-ray-tracing.assets/out.jpg)
+![out](../assets/image/out.jpg)
 
 > TEST IMAGE
 
