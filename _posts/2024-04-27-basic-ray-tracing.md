@@ -4,7 +4,7 @@
 
 本文将使用C++且不依赖第三方库，实现一个基本的光线追踪。以下是最终效果：
 
-![final](../assets/image/final.png)
+![final](https://raw.githubusercontent.com/s1san/s1san.github.io/master/assets/final.png)
 
 光线追踪通常包括以下步骤：
 
@@ -22,7 +22,7 @@
 
 ### 简单的向量操作库
 
-因为不依赖与第三方库，我们需要自己写一个简单的向量库以方便后续操作。这里直接使用Github上的[ssloy/tinyraytracer](https://github.com/ssloy/tinyraytracer/wiki)项目的中`geometry.h`。简单讲解一下代码，主要内容是C++中模板的使用：
+因为不依赖与第三方库，我们需要自己写一个简单的向量库以方便后续操作。这里直接使用Github上的[tinyraytracer](https://github.com/ssloy/tinyraytracer/wiki)项目的中`geometry.h`。简单讲解一下代码，主要内容是C++中模板的使用：
 
 ```c++
 template <size_t DIM, typename T> struct vec {
