@@ -2,9 +2,7 @@
 
 不同于[光栅化](https://zh.wikipedia.org/wiki/%E6%A0%85%E6%A0%BC%E5%8C%96)，光线追踪基于物理光学原理，模拟光线在场景中的传播，生成高质量图像。传统的光栅化难以实现真实世界中的阴影、全局效果，而在光线追踪中，从相机或观察者位置发射光线，并跟踪这些光线在场景中的路径，直到它们与物体相交或到达场景的边界为止。通过考虑光线与场景中物体之间的相交情况，光线追踪可以模拟出真实世界中的光照、反射、折射等光学效果。
 
-本文将使用C++且不依赖第三方库，实现一个基本的
-
-光线追踪。你也可以将本文看做[tinyraytracer](https://github.com/ssloy/tinyraytracer)的中文翻译版，以下是最终效果：
+本文将使用C++，实现一个简单的光线追踪。你也可以将本文看做[tinyraytracer](https://github.com/ssloy/tinyraytracer)的中文翻译版，以下是最终效果：
 
 ![refraction](https://cdn.jsdelivr.net/gh/s1san/asusual@img/img/refraction.png)
 
@@ -25,7 +23,7 @@
 
 ### 向量操作
 
-因为不依赖与第三方库，我们需要自己写一个简单的向量库以方便后续操作。这里直接使用Github上的[tinyraytracer](https://github.com/ssloy/tinyraytracer/wiki)项目的中`geometry.h`。简单讲解一下代码，主要内容是C++中模板的使用：
+首先写一个简单的向量库以方便后续操作。这里直接使用Github上的[tinyraytracer](https://github.com/ssloy/tinyraytracer/wiki)项目的中`geometry.h`。简单讲解一下代码，主要内容是C++中模板的使用：
 
 ```c++
 template <size_t DIM, typename T> struct vec {
@@ -512,6 +510,8 @@ Vec3f refract( const Vec3f& I, const Vec3f& N, const float& refractive_index )
 ![refraction](https://cdn.jsdelivr.net/gh/s1san/asusual@img/img/refraction.png)
 
 [这里](https://github.com/s1san/sbr/tree/main/BasicRayTracing/tutorial/step6)找到生成图像的代码。
+
+完整项目代码在[这里](https://github.com/s1san/sbr/tree/main/BasicRayTracing)。
 
 ## References
 
