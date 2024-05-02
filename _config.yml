@@ -58,7 +58,7 @@ plugins:
 author:
   name: "s1san"
   avatar: "/assets/images/bio-photo.jpg"
-  bio: "My awesome biography constrained to a sentence or two goes here."
+  bio: "Dungeon Master"
   links:
     - label: "Github Page"
       icon: "fas fa-fw fa-link"
