@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "contrast" # "air", "aqua", "dark", "dirt", "neon", "mint", "plum", "sunrise", "default"
+minimal_mistakes_skin    : "air" # "aqua", "dark", "dirt", "neon", "mint", "plum", "sunrise", "default", "contrast"
 
 # Site Settings
 locale                   : "cn-China"
@@ -115,7 +115,7 @@ author:
   name             : "s1san"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Dungeon Master"
-  location         : "HuNan China"
+  location         : "Hunan, China"
   email            :
   links:
     - label: "Email"
