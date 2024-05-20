@@ -445,29 +445,23 @@ A_1=
 ```cpp
 void SimplicialComplexOperators::assignElementIndices() {
 
-    // Needed to access geometry->vertexIndices, etc. as cached quantities.
-    // Not needed if you're just using v->getIndex(), etc.
     geometry->requireVertexIndices();
     geometry->requireEdgeIndices();
     geometry->requireFaceIndices();
 
-    // You can set the index field of a vertex via geometry->vertexIndices[v], where v is a Vertex object (or an
-    // integer). Similarly you can do edges and faces via geometry->edgeIndices, geometry->faceIndices, like so:
     size_t idx = 0;
     for (Vertex v : mesh->vertices()) {
-        idx = geometry->vertexIndices[v];
+        geometry->vertexIndices[v] = idx++;
     }
 
+    idx = 0;
     for (Edge e : mesh->edges()) {
-        idx = geometry->edgeIndices[e];
+        geometry->edgeIndices[e] = idx++;
     }
 
+    idx = 0;
     for (Face f : mesh->faces()) {
-        idx = geometry->faceIndices[f];
-    }
-
-    for (Vertex v : mesh->vertices()) {
-        idx = v.getIndex(); // == geometry->vertexIndices[v])
+        geometry->faceIndices[f] = idx++;
     }
 }
 ```
@@ -481,45 +475,46 @@ SparseMatrix<size_t> SimplicialComplexOperators::buildVertexEdgeAdjacencyMatrix(
     geometry->requireVertexIndices();
     geometry->requireEdgeIndices();
 
-    std::vector<Tri> cofficients;
-    SpMat A(mesh->nEdges(), mesh->nVertices());
+    std::vector<Tri> coefficients;
+    SpMat A0(mesh->nEdges(), mesh->nVertices());
 
     for (Edge e : mesh->edges()) {
         size_t idx = geometry->edgeIndices[e];
-        cofficients.push_back(Tri(idx, geometry->vertexIndices[e.firstVertex()], 1));
-        cofficients.push_back(Tri(idx, geometry->vertexIndices[e.secondVertex()], 1));
+        coefficients.push_back(Tri(idx, geometry->vertexIndices[e.firstVertex()], 1));
+        coefficients.push_back(Tri(idx, geometry->vertexIndices[e.secondVertex()], 1));
     }
 
-    A.setFromTriplets(cofficients.begin(), cofficients.end());
+    A0.setFromTriplets(coefficients.begin(), coefficients.end());
 
-    return A;
+    return A0
 }
 ```
 
-
+构建一个稀疏矩阵，表示顶点-边的邻接关系。
 
 ### 3.实现`buildEdgeFaceAdjacencyMatrix  `方法
 
 ```c++
 SparseMatrix<size_t> SimplicialComplexOperators::buildFaceEdgeAdjacencyMatrix() const {
+
     geometry->requireFaceIndices();
     geometry->requireEdgeIndices();
 
-    std::vector<T> cofficients;
-    SpMat A(mesh->nFaces(), mesh->nEdges());
+    std::vector<Tri> coefficients;
+    SpMat A1(mesh->nFaces(), mesh->nEdges());
 
     for (Face f : mesh->faces()) {
         size_t idx = geometry->faceIndices[f];
-        for (Edge e : f.adjacentEdges()) cofficients.push_back(T(idx, geometry->edgeIndices[e], 1));
+        for (Edge e : f.adjacentEdges()) coefficients.push_back(Tri(idx, geometry->edgeIndices[e], 1));
     }
 
-    A.setFromTriplets(cofficients.begin(), cofficients.end());
+    A1.setFromTriplets(coefficients.begin(), coefficients.end());
 
-    return A; 
+    return A1;
 }
 ```
 
-
+构建一个面-边邻接矩阵。
 
 ### 4.实现`buildVertexVector`，`buildVector`，`buildVector`方法
 
@@ -551,13 +546,13 @@ Vector<size_t> SimplicialComplexOperators::buildEdgeVector(const MeshSubset& sub
 Vector<size_t> SimplicialComplexOperators::buildFaceVector(const MeshSubset& subset) const {
     Vector<size_t> f = Vector<size_t>::Zero(mesh->nFaces());
 
-    for (size_t idx : subset.edges) f[idx] = 1;
+    for (size_t idx : subset.faces) f[idx] = 1;
 
     return f;
 }
 ```
 
-
+构建顶点、边和面指示向量，反映给定子集中的元素，代码都差不多。
 
 对于剩下的方法，记得**必须**使用邻接矩阵（如上所述）；而不是直接使用半边数据结构实现这些方法。
 
@@ -585,7 +580,9 @@ MeshSubset SimplicialComplexOperators::star(const MeshSubset& subset) const {
 
 ```
 
+对于子集中的每个顶点 `idx`，使用 `vertexEdgeSpMat` 的 `InnerIterator` 来遍历与该顶点相邻的所有边，并将这些边添加到 `star` 中。
 
+对于 `star` 中的每条边 `idx`，使用 `faceEdgeSpMat` 的 `InnerIterator` 来遍历与该边相邻的所有面，并将这些面添加到 `star` 中。
 
 ### 6.实现`closure`方法
 
@@ -610,7 +607,7 @@ MeshSubset SimplicialComplexOperators::closure(const MeshSubset& subset) const {
 }
 ```
 
-
+闭包操作要求包括所有选定的单纯形及其所有面。例如，如果一个面被选中，那么它的所有边和顶点也必须被包括在内。如果一条边被选中，那么它的两个顶点也必须被包括在内。
 
 ### 7.实现`link`方法
 
@@ -624,18 +621,17 @@ MeshSubset SimplicialComplexOperators::link(const MeshSubset& subset) const {
 }
 ```
 
-
+计算给定子集的链接，即所有与该子集邻接但不属于该子集或其闭包的单纯形。
 
 ### 8.实现`isComplex`，`isPureComplex`方法
 
 ```c++
 bool SimplicialComplexOperators::isComplex(const MeshSubset& subset) const {
-    if (closure(subset).equals(subset)) return true;
-    return false;
+    return closure(subset).equals(subset);
 }
 ```
 
-
+如果一个子集的闭包等于它本身，则它是单纯复形
 
 ```c++
 int SimplicialComplexOperators::isPureComplex(const MeshSubset& subset) const {
@@ -672,7 +668,13 @@ int SimplicialComplexOperators::isPureComplex(const MeshSubset& subset) const {
 }
 ```
 
+首先检查给定的子集是否是一个单纯复形。如果不是，返回 -1。
 
+然后根据子集中包含的最高维单纯形（面、边、顶点）来判断它是否是纯净单纯复形。
+
+如果包含面，检查是否是纯 2-复形；如果包含边，检查是否是纯 1-复形；如果只有顶点，则是纯 0-复形。
+
+在每个检查过程中，通过删除低维单纯形并计算闭包来验证纯净性。如果计算结果与原始子集一致，则是纯净的。
 
 ### 9.实现`boundary`方法
 
@@ -687,39 +689,46 @@ MeshSubset SimplicialComplexOperators::boundary(const MeshSubset& subset) const 
         std::vector<size_t> allEdge;
         std::set<size_t> boundaryEdge;
 
+        // 收集所有属于面的边
         for (size_t idx : subset.faces)
             for (int k = 0; k < faceEdgeSpMat.outerSize(); k++)
                 for (SpMat::InnerIterator it(faceEdgeSpMat, k); it; ++it)
                     if (it.row() == int(idx)) allEdge.push_back(it.col());
 
+        // 通过计算每条边出现的次数来确定边界边
         for (size_t idx : subset.edges)
             if (std::count(allEdge.begin(), allEdge.end(), idx) == 1) boundaryEdge.insert(idx);
 
         boundary.addEdges(boundaryEdge);
         boundary = closure(boundary);
         return boundary;
-    } else if (isPureComplex(subset) == 1) {
+    } else if (isPureComplex(subset) == 1) {    // 如果子集是一个纯净的 1-复形
         std::vector<size_t> allVertex;
         std::set<size_t> boundaryVertex;
 
+        // 收集所有属于边的顶点
         for (size_t idx : subset.edges)
             for (int k = 0; k < vertexEdgeSpMat.outerSize(); k++)
                 for (SpMat::InnerIterator it(vertexEdgeSpMat, k); it; ++it)
                     if (it.row() == int(idx)) allVertex.push_back(it.col());
 
+        // 通过计算每个顶点出现的次数来确定边界顶点
         for (size_t idx : subset.edges)
             if (std::count(allVertex.begin(), allVertex.end(), idx) == 1) boundaryVertex.insert(idx);
 
+        // 将边界顶点添加到边界集合中
         boundary.addEdges(boundaryVertex);
+        // 计算闭包
         boundary = closure(boundary);
         return boundary;
     }
 
+    // 如果既不是纯净的 1-复形，也不是 2-复形，返回空边界
     return boundary;
 }
 ```
 
-
+完整代码在[这里](https://github.com/s1san/cmu-ddg2021)
 
 ## References
 
@@ -730,3 +739,5 @@ Wiki，[柏拉图立体](https://zh.wikipedia.org/wiki/%E6%9F%8F%E6%8B%89%E5%9C%
 数立方，[数理史上的绝妙证明：柏拉图多面体只有五种](https://mathcubic.org/article/article/index/id/478.html)
 
 Wiki，[单纯形](https://zh.wikipedia.org/wiki/%E5%8D%95%E7%BA%AF%E5%BD%A2)
+
+知乎，Steven，[CMU DDG 离散微分几何 编程作业0：单纯复形操作](https://zhuanlan.zhihu.com/p/563081925)
