@@ -186,6 +186,7 @@ $$\begin{aligned}&F\geq2\left(\frac F2\right)\\&F\geq F\end{aligned}$$
 $χ=2-2g$
 
 结合欧拉公式 $V−E+F=2-2g$ 和 $E=\frac32F$：
+
 $$\begin{aligned}\\&V-\frac{3F}2+F=2-2g\\&V-\frac F2=2-2g\\&V=\frac F2+2-2g\end{aligned}$$
 
 利用$F≥2V$：
@@ -238,9 +239,9 @@ $V:E:F=1:3:2$
 ### 6.Mean Valence (Quad Mesh)
 
 与前面的练习类似，考虑一个四边形网格，即一个完全的组合曲面由四面四边形而不是三面三角形构成。设 Q 表示的个数四边形，给出比率的表达式
-$$
-V: E: Q
-$$
+
+$$V: E: Q$$
+
 在顶点数趋于无穷时的极限。你可以再次假设亏格仍然是固定的。
 
 
