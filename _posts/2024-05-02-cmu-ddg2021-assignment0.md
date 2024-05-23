@@ -154,6 +154,7 @@ $$m(K)=\begin{cases}4,&g=0\\0,&g=1\\1,&g\geq2,\end{cases}$$
 $χ=2$
 
 结合欧拉公式 $V−E+F=0$ 和 $E=\frac32F$：
+
 $$\begin{aligned}\\&V-\frac{3F}2+F=2\\&V-\frac F2=2\\&V=\frac F2+2\end{aligned}$$
 
 利用$F≥2V$：
@@ -169,6 +170,7 @@ $$\begin{aligned}&F\geq2\left(\frac F2+2\right)\\&F\geq F+4\end{aligned}$$
 $χ=0$
 
 结合欧拉公式 $V−E+F=0$ 和 $E=\frac32F$：
+
 $$\begin{aligned}\\&V-\frac{3F}2+F=0\\&V-\frac F2=0\\&V=\frac F2\end{aligned}$$
 
 利用$F≥2V$：
