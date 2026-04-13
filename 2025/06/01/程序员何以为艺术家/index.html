@@ -1,474 +1,294 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"s1san.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="本书内容可以分为三部分：  黑客精神与编程哲学（第1-4章） 为什么书呆子不受欢迎 黑客与画家 不能说的话 良好的坏习惯   技术与创业（第5–9章） 另一条路 如何创造财富 关注贫富分化 防止垃圾邮件的一种方法 设计者的品味   编程语言与工具（第10–15章） 编程语言解析 一百年后的编程语言 拒绝平庸 书呆子的复仇 梦寐以求的编程语言 设计与研究     黑客与画家：硅谷创业之父Paul G">
+  <meta charset="utf-8">
+  
+  
+  <title>程序员何以为艺术家 | s1san</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="大教堂与集市开源万岁！  大教堂与集市原作名：The Cathedral &amp; the Bazaar: Musings on Linux and Open Source by an Accidental Revolutionary出版社：机械工业出版社，第一版 作者：[美] Eric S. Raymond译者：卫剑钒  当你对一个程序不在感兴趣时，你最后的责任就是把它交给一个可以胜任的接棒者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="程序员何以为艺术家">
 <meta property="og:url" content="http://s1san.github.io/2025/06/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BD%95%E4%BB%A5%E4%B8%BA%E8%89%BA%E6%9C%AF%E5%AE%B6/index.html">
 <meta property="og:site_name" content="s1san">
-<meta property="og:description" content="本书内容可以分为三部分：  黑客精神与编程哲学（第1-4章） 为什么书呆子不受欢迎 黑客与画家 不能说的话 良好的坏习惯   技术与创业（第5–9章） 另一条路 如何创造财富 关注贫富分化 防止垃圾邮件的一种方法 设计者的品味   编程语言与工具（第10–15章） 编程语言解析 一百年后的编程语言 拒绝平庸 书呆子的复仇 梦寐以求的编程语言 设计与研究     黑客与画家：硅谷创业之父Paul G">
+<meta property="og:description" content="大教堂与集市开源万岁！  大教堂与集市原作名：The Cathedral &amp; the Bazaar: Musings on Linux and Open Source by an Accidental Revolutionary出版社：机械工业出版社，第一版 作者：[美] Eric S. Raymond译者：卫剑钒  当你对一个程序不在感兴趣时，你最后的责任就是把它交给一个可以胜任的接棒者">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-31T17:11:58.000Z">
-<meta property="article:modified_time" content="2025-08-12T23:21:39.041Z">
+<meta property="article:modified_time" content="2026-04-13T12:35:43.007Z">
 <meta property="article:author" content="s1san">
-<meta property="article:tag" content="创业">
+<meta property="article:tag" content="软件开发">
 <meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://s1san.github.io/2025/06/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BD%95%E4%BB%A5%E4%B8%BA%E8%89%BA%E6%9C%AF%E5%AE%B6/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>程序员何以为艺术家 | s1san</title>
   
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">s1san</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
+    <link rel="alternate" href="/atom.xml" title="s1san" type="application/atom+xml">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://s1san.github.io/2025/06/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BD%95%E4%BB%A5%E4%B8%BA%E8%89%BA%E6%9C%AF%E5%AE%B6/">
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="s1san">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="s1san">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          程序员何以为艺术家
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-06-01 01:11:58" itemprop="dateCreated datePublished" datetime="2025-06-01T01:11:58+08:00">2025-06-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-08-13 07:21:39" itemprop="dateModified" datetime="2025-08-13T07:21:39+08:00">2025-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
+  
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">s1san</a>
+      </h1>
       
-        <p>本书内容可以分为三部分：</p>
-<ul>
-<li>黑客精神与编程哲学（第1-4章）<ol>
-<li>为什么书呆子不受欢迎</li>
-<li>黑客与画家</li>
-<li>不能说的话</li>
-<li>良好的坏习惯</li>
-</ol>
-</li>
-<li>技术与创业（第5–9章）<ol start="5">
-<li>另一条路</li>
-<li>如何创造财富</li>
-<li>关注贫富分化</li>
-<li>防止垃圾邮件的一种方法</li>
-<li>设计者的品味</li>
-</ol>
-</li>
-<li>编程语言与工具（第10–15章）<ol start="10">
-<li>编程语言解析</li>
-<li>一百年后的编程语言</li>
-<li>拒绝平庸</li>
-<li>书呆子的复仇</li>
-<li>梦寐以求的编程语言</li>
-<li>设计与研究</li>
-</ol>
-</li>
-</ul>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://s1san.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-程序员何以为艺术家" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BD%95%E4%BB%A5%E4%B8%BA%E8%89%BA%E6%9C%AF%E5%AE%B6/" class="article-date">
+  <time class="dt-published" datetime="2025-05-31T17:11:58.000Z" itemprop="datePublished">2025-06-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      程序员何以为艺术家
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="大教堂与集市"><a href="#大教堂与集市" class="headerlink" title="大教堂与集市"></a>大教堂与集市</h2><p>开源万岁！</p>
+<blockquote>
+<p>大教堂与集市<br>原作名：The Cathedral &amp; the Bazaar: Musings on Linux and Open Source by an Accidental Revolutionary<br>出版社：机械工业出版社，第一版</p>
+<p>作者：[美] Eric S. Raymond<br>译者：卫剑钒</p>
+</blockquote>
+<p>当你对一个程序不在感兴趣时，你最后的责任就是把它交给一个可以胜任的接棒者。</p>
+<p>“玩”是创造性活动中最具有经济效能的工作模式。</p>
+<p>在同侪中拥有好名声是一种最基本的激励，出于前面提到的进化上的原因，我们都渴望它。</p>
+<p>声誉是很好的吸引他人注意和合作的途径。</p>
+<p>如果你所处的礼物经济和交换经济或命令体系互相关联交织，你的名声就可能传播到后两种环境中，使你在那里获得更高的地位。</p>
+<p>存在一个和邻居们（最相似的竞争项目）的最佳距离。</p>
+<p>“自称是黑客不代表你就是黑客，只有其他黑客认为你是黑客，你才是黑客。”</p>
+<p>基于声誉竞争的礼物文化可能是通过合作产生（和检验）高质量创造性工作的全世界范围内的最佳方法。</p>
+<p>只有当程序员非常积极以至于没有奖励他（她）也愿意工作时，才是唯一应该给与绩效奖励的时候。</p>
+<p>给予激励是聪明的做法，但一定不能有附加条件，以避免把事情搞糟糕。</p>
+<p>开源开发团队在生产力会远远超过（特别是长远地看，创造性作为生产力倍乘器的作用会越来越重要）同等规模与技能的闭源程序员团队，后者受稀缺性报酬但同时也导致动力不足。</p>
+<p>当自由市场经济开始创造出足够的财富盈余时，大量程序员可以生活在后稀缺的礼物文化中，而软件产品的工业\工厂模式注定走向衰亡。</p>
+<p>可以预期，由于开源的存在，任何软件技术的最终命运不是灭亡就是成为开源基础架构的一部分。这对那些想靠闭源软件永远收取租金的企业家来说可不是好消息，但软件产业从整体上仍会保持企业性质，上层（应用）软件将不断走向开放，封闭知识产权垄断的时间越来越有限，因为他们的产品终将落入基础架构之中。</p>
+<h2 id="黑客与画家"><a href="#黑客与画家" class="headerlink" title="黑客与画家"></a>黑客与画家</h2><p>Just for fun.</p>
 <blockquote>
 <p>黑客与画家：硅谷创业之父Paul Graham文集<br>原作名：Hackers and Painters: Big Ideas from the Computer Age<br>出版社：人民邮电出版社，第一版</p>
-<p>作者：【美】Paul Graham<br>译者：阮一峰</p>
+<p>作者：[美] Paul Graham<br>译者：阮一峰</p>
 </blockquote>
-<h2 id="黑客精神与编程哲学"><a href="#黑客精神与编程哲学" class="headerlink" title="黑客精神与编程哲学"></a>黑客精神与编程哲学</h2><ul>
-<li>为什么书呆子不受欢迎<br>他们的心思在别的地方。</li>
-<li>黑客与画家<br>黑客也是创造者，与画家、建筑师、作家一样。</li>
-<li>不能说的话<br>如果你的想法是社会无法容忍的，你怎么办？</li>
-<li>良好的坏习惯<br>与其他美国人一样，黑客的成功秘诀就是打破常规。</li>
-</ul>
-<h2 id="技术与创业"><a href="#技术与创业" class="headerlink" title="技术与创业"></a>技术与创业</h2><ul>
-<li>另一条路<br>互联网软件是微机诞生后的最大机会。</li>
-<li>如何创造财富<br>致富的最好方法就是为社会创造财富。创造财富的最好方法就是创业。</li>
-<li>关注贫富分化<br>“收入分配不平等”的危害，会不会没有我们想的那样严重？</li>
-<li>防止垃圾邮件的一种方法<br>不久前，许多专家还认为无法有效地过滤垃圾邮件。本文改变了他们的想法。</li>
-<li>设计者的品味<br>如何做出优秀的东西？</li>
-</ul>
-<h2 id="编程语言与工具"><a href="#编程语言与工具" class="headerlink" title="编程语言与工具"></a>编程语言与工具</h2><ul>
-<li>编程语言解析<br>什么是编程语言？为什么它们现在很热门？</li>
-<li>一百年后的编程语言<br>一百年后，人类怎样编程？为什么不从现在开始就这样编程呢？</li>
-<li>拒绝平庸<br>别忘了你的对手与你一样，能用任何想用的语言编写互联网软件。</li>
-<li>书呆子的复仇<br>在高科技行业，只有失败者采用“业界最佳实践”。</li>
-<li>梦寐以求的编程语言<br>一种好的编程语言，是让黑客可以随心所欲使用的语言。</li>
-<li>设计与研究<br>研究必须是“新”的，而设计必须是“好”的。</li>
-</ul>
+<p>黑客与画家的共同之处，在于他们都是创作者。与作曲家、建筑师、作家一样，黑客和画家都是试图创作出优秀的作品。他们本质上都不是在做研究，虽然在创作过程中，他们可能会发现一些新技术（那样当然更好）。</p>
+<p>如果一个命题是错的，这就是它所能得到的最坏的评价，足够批判它了，根本不用再加上任何其他标签。但是，如果一个命题不是错的，却被加上各种标签，进行压制和批判，那就有问题。因为只要不是错的观点，就不应该被压制讨论。</p>
+<p>如果你是一个黑客，并且梦想自己创业，可能会有两件事情令你望而却步，不敢真正开始采取行动。一件是你不懂得管理企业，另一件是你害怕竞争。可是实际上，这两件事都是没有通电的篱笆。</p>
+<p>管理企业其实很简单，记住两点：</p>
+<ol>
+<li>做出用户喜欢的产品</li>
+<li>保证开支小于收入</li>
+</ol>
+<p>只要做到这两点，你就会超过大多数创业公司。随着事业的发展，你自己就能琢磨出来其他的诀窍。</p>
+<p>不要被微软吓到。你能做到他做不到的事情，正如它能做到你做不到的事情一样。</p>
+<p>致富的方法有许多种，本文只谈论其中的一种，也就是通过创造有价值的东西在市场上得到回报，从而致富。其他许多种的致富方法包括赌博、投机、婚姻、继承、偷窃、敲诈、诈骗、垄断、行贿、游说、造假、开矿等。获得最可观的财富往往会涉及其中的几种方法。</p>
+<p>要致富，你需要两样东西：可测量性和可放大性。你的职位产生的业绩，应该是可测量的，否则你做得再多，也不会得到更多报酬。此外，你还必须有可放大性，也就是说你做出的决定能够产品巨大的效应。</p>
+<p>发现是否存在可放大性的方法：看失败的可能性。</p>
+<p>每个人的技能不同，导致收入不同，这才是贫富分化的主要原因，正如逻辑学的“奥卡姆剃刀”原则所说，简单的解释就是最好的解释。</p>
 
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://s1san.github.io/2025/06/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BD%95%E4%BB%A5%E4%B8%BA%E8%89%BA%E6%9C%AF%E5%AE%B6/" data-id="cmnx6fajh000ip4c09n8t6vmj" data-title="程序员何以为艺术家" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li></ul>
 
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%88%9B%E4%B8%9A/" rel="tag"># 创业</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2025/01/10/%E8%BD%AF%E4%BB%B6%E4%BD%95%E4%BB%A5%E4%B8%BA%E5%B7%A5%E7%A8%8B/" rel="prev" title="软件何以为工程">
-      <i class="fa fa-chevron-left"></i> 软件何以为工程
-    </a></div>
-      <div class="post-nav-item"></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%91%E5%AE%A2%E7%B2%BE%E7%A5%9E%E4%B8%8E%E7%BC%96%E7%A8%8B%E5%93%B2%E5%AD%A6"><span class="nav-number">1.</span> <span class="nav-text">黑客精神与编程哲学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%88%9B%E4%B8%9A"><span class="nav-number">2.</span> <span class="nav-text">技术与创业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">编程语言与工具</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">s1san</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/s1san" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;s1san" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">s1san</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/12/11/%E5%87%A0%E4%BD%95%E6%BC%AB%E8%B0%88%EF%BC%9A%E9%9A%8F%E6%89%8B%E8%AE%B0%E4%B8%8E%E8%8D%89%E7%A8%BF%E5%A0%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          几何漫谈：随手记与草稿堆
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/01/10/%E8%BD%AF%E4%BB%B6%E4%BD%95%E4%BB%A5%E4%B8%BA%E5%B7%A5%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">软件何以为工程</div>
+    </a>
+  
+</nav>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
+</article>
 
 
-<script src="/js/schemes/pisces.js"></script>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%87%A0%E4%BD%95%E6%BC%AB%E8%B0%88/">几何漫谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
 
 
-<script src="/js/next-boot.js"></script>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/README/" rel="tag">README</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95/" rel="tag">平面几何</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%BF%E6%B2%BB/" rel="tag">政治</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E6%B5%8E/" rel="tag">经济</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li></ul>
+    </div>
+  </div>
 
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/README/" style="font-size: 20px;">README</a> <a href="/tags/%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95/" style="font-size: 10px;">平面几何</a> <a href="/tags/%E6%94%BF%E6%B2%BB/" style="font-size: 10px;">政治</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">游戏开发</a> <a href="/tags/%E7%BB%8F%E6%B5%8E/" style="font-size: 10px;">经济</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">二月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/01/">一月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">十二月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">六月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">十月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/02/24/%E6%9E%AF%E8%8D%A3/">枯荣</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/27/%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95%E6%80%BB%E7%BB%93%E7%AF%87/">平面几何总结篇</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/26/%E7%8E%8B%E6%9C%9D%E7%AE%97%E6%B3%95/">王朝算法</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/19/%E4%B9%A6%E5%8D%95/">书单</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/18/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E5%B8%88/">游戏设计师</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 s1san<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
 
 
 
   
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
+  </div>
 </body>
 </html>

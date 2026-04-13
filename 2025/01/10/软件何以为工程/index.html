@@ -1,571 +1,347 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"s1san.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="人月神话，1975年首次发行，软件工程领域的经典著作，其核心观点历经半个世纪依然具有现实意义。虽然我的项目经验尚浅，但它已经为我在系统开发过程中提供了指导性思想。相信在过一两年后再读本书时更能感同身受。  人月神话（纪念典藏版）原作名：The Mythical Man-Month: Essays on Software Engineering出版社：清华大学出版社，第一版 作者：【美】小弗雷德里克">
+  <meta charset="utf-8">
+  
+  
+  <title>软件何以为工程 | s1san</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="人件橘生淮南则为橘，生于淮北则为枳。 以人为本，环境塑造工作方式。  人件原作名：Peopleware: Productive Projects and Teams出版社：清华大学出版社，第二版 作者：[美] Tom DeMarco &#x2F; [美] Timothy Lister译者：UMLChina  远远超过最终用户需求的质量是一种取得更高生产力的手段。 质量是免费的，但只是对那些愿意为此">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件何以为工程">
 <meta property="og:url" content="http://s1san.github.io/2025/01/10/%E8%BD%AF%E4%BB%B6%E4%BD%95%E4%BB%A5%E4%B8%BA%E5%B7%A5%E7%A8%8B/index.html">
 <meta property="og:site_name" content="s1san">
-<meta property="og:description" content="人月神话，1975年首次发行，软件工程领域的经典著作，其核心观点历经半个世纪依然具有现实意义。虽然我的项目经验尚浅，但它已经为我在系统开发过程中提供了指导性思想。相信在过一两年后再读本书时更能感同身受。  人月神话（纪念典藏版）原作名：The Mythical Man-Month: Essays on Software Engineering出版社：清华大学出版社，第一版 作者：【美】小弗雷德里克">
+<meta property="og:description" content="人件橘生淮南则为橘，生于淮北则为枳。 以人为本，环境塑造工作方式。  人件原作名：Peopleware: Productive Projects and Teams出版社：清华大学出版社，第二版 作者：[美] Tom DeMarco &#x2F; [美] Timothy Lister译者：UMLChina  远远超过最终用户需求的质量是一种取得更高生产力的手段。 质量是免费的，但只是对那些愿意为此">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-10T15:22:10.000Z">
-<meta property="article:modified_time" content="2025-08-12T23:21:24.504Z">
+<meta property="article:modified_time" content="2026-02-14T12:23:57.397Z">
 <meta property="article:author" content="s1san">
 <meta property="article:tag" content="软件工程">
 <meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://s1san.github.io/2025/01/10/%E8%BD%AF%E4%BB%B6%E4%BD%95%E4%BB%A5%E4%B8%BA%E5%B7%A5%E7%A8%8B/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>软件何以为工程 | s1san</title>
   
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">s1san</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
+    <link rel="alternate" href="/atom.xml" title="s1san" type="application/atom+xml">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://s1san.github.io/2025/01/10/%E8%BD%AF%E4%BB%B6%E4%BD%95%E4%BB%A5%E4%B8%BA%E5%B7%A5%E7%A8%8B/">
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="s1san">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="s1san">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          软件何以为工程
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-01-10 23:22:10" itemprop="dateCreated datePublished" datetime="2025-01-10T23:22:10+08:00">2025-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-08-13 07:21:24" itemprop="dateModified" datetime="2025-08-13T07:21:24+08:00">2025-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
+  
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">s1san</a>
+      </h1>
       
-        <p>人月神话，1975年首次发行，软件工程领域的经典著作，其核心观点历经半个世纪依然具有现实意义。虽然我的项目经验尚浅，但它已经为我在系统开发过程中提供了指导性思想。相信在过一两年后再读本书时更能感同身受。</p>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://s1san.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-软件何以为工程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/10/%E8%BD%AF%E4%BB%B6%E4%BD%95%E4%BB%A5%E4%B8%BA%E5%B7%A5%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2025-01-10T15:22:10.000Z" itemprop="datePublished">2025-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      软件何以为工程
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="人件"><a href="#人件" class="headerlink" title="人件"></a>人件</h2><p>橘生淮南则为橘，生于淮北则为枳。</p>
+<p>以人为本，环境塑造工作方式。</p>
 <blockquote>
-<p>人月神话（纪念典藏版）<br>原作名：The Mythical Man-Month: Essays on Software Engineering<br>出版社：清华大学出版社，第一版</p>
-<p>作者：【美】小弗雷德里克·P.布鲁克斯（Frederick P. Brooks,Jr.）<br>译者：UMLChina</p>
+<p>人件<br>原作名：Peopleware: Productive Projects and Teams<br>出版社：清华大学出版社，第二版</p>
+<p>作者：[美] Tom DeMarco &#x2F; [美] Timothy Lister<br>译者：UMLChina</p>
 </blockquote>
-<h2 id="焦油坑"><a href="#焦油坑" class="headerlink" title="焦油坑"></a>焦油坑</h2><ol>
-<li>编程为什么有趣？<ul>
+<p>远远超过最终用户需求的质量是一种取得更高生产力的手段。</p>
+<p>质量是免费的，但只是对那些愿意为此付出巨大代价的人而言。</p>
+<p>把工作做好的惟一方法是制订一个不可能的、乐观的交付日期。</p>
+<p>软件管理的七个不真实期望</p>
+<ol>
+<li>有使你的生产力剧增的新诀窍，你已经错过了。<br>回答：你不会愚蠢到错过如此重要的东西。你在不停地研究新的方法，试图找出最重要的方法。</li>
+<li>其他经理的成效是正100%、200%或者更多。<br>回答：忘掉它。通常向你吹嘘的魔术工具主要着眼于软件开发周期中的编码和测试环节。</li>
+<li>技术正飞快地发展，而你正在被淘汰。<br>回答：是的，技术是在飞速发展，但是（又是高科技幻觉）你所做的大部分工作并不是真正的高科技。当机器已经发生了巨大变化时，商业软件的开发却已经是相当静态的。</li>
+<li>改变语言将使你收获巨大。<br>回答：语言是很重要的，因为它们影响着你思考问题的方式，但话又说回来，它们只能对项目的实现部分产生影响。</li>
+<li>因为待做的项目堆积如山，你需要立即加倍地提高生产力。<br>回答：大多地谈论堆积如山的软件项目是荒诞的。我们都知道项目的最终实际成本会大大超过我们一开始的估计成本。</li>
+<li>其他任何事情你都顺其自然，是不是你对手下的软件开发人员也放任自由？<br>回答：这是高科技幻觉的另一个变种：相信软件开发人员能轻松地自动化地、完成工作。</li>
+<li>如果将你手下的人置于很大的压力下，他们会工作得更好。<br>回答：他们不会工作得更好——相反，只是他们享受工作的乐趣减少了。</li>
+</ol>
+<p>经理的职能不是强迫人们工作，而是让人们有可能工作。</p>
+<p>有100万种方法使你丢掉一个工作日，但却没有一种方法把它补回来。</p>
+<p>当你需要对任何事情做出度量的时候，总会有这样或那样的度量方法比选择干脆放弃度量要强。  </p>
+<p>记住你不只在收集数据，你还在帮助人们改变态度。根据你有规律地记录的不受打扰的时间，你在正是证明这个概念：人至少应该有一些不受打扰的时间。</p>
+<h2 id="人月神话"><a href="#人月神话" class="headerlink" title="人月神话"></a>人月神话</h2><p>慢即是快，欲速则不达。</p>
+<blockquote>
+<p>人月神话<br>原作名：The Mythical Man-Month: Essays on Software Engineering<br>出版社：清华大学出版社，第一版</p>
+<p>作者：[美] Frederick P. Brooks, Jr.<br>译者：UMLChina</p>
+</blockquote>
+<p>编程为什么有趣？</p>
+<ul>
 <li>这种乐趣来源于造东西的成就感。</li>
 <li>这种乐趣来源于制造对他人有用的东西。</li>
 <li>乐趣来源整个过程体现出的一股强大的魅力——将相互啮合的活动部件组装在一起，看到他们以精妙的方式运行着，并收到了预期的效果。</li>
 <li>这种乐趣来源于持续的学习，来源于这项工作的非重复特性。</li>
 <li>这种乐趣还来源于在易于驾驭的介质上工作。</li>
 </ul>
-</li>
-<li>编程固有的苦恼：<ul>
+<p>编程固有的苦恼：</p>
+<ul>
 <li>苦恼来自对完美的追求。</li>
 <li>苦恼来自由他人来设定目标、供给资源和提供信息。</li>
 <li>设计宏大概念是有趣的，但寻找琐碎的bug却是一项重复性的活动。</li>
 <li>投入了大量的辛苦的劳动，产品在即将完成或者终于完成的时候，却已显得陈旧过时。</li>
 </ul>
-</li>
-</ol>
 <blockquote>
 <p> 这，就是编程，一个让许多人痛苦挣扎的焦油坑，以及一项乐趣和苦恼共存的创造性活动。</p>
 </blockquote>
-<ol start="3">
-<li>在众多软件项目中，软件项目的进度安排不合理普遍发生的原因是什么呢？<ul>
+<p>在众多软件项目中，软件项目的进度安排不合理普遍发生的原因是什么呢？</p>
+<ul>
 <li>我们的估算技术还很不成熟，说得更严重一些，它们反映了一个悄无声息但很不真实得假设——一切都将运作良好。</li>
 <li>采用的估算技术隐含地假设人和月可以互换，错误地将进度与工作量相互混淆。</li>
 <li>由于对自己的估算缺乏信心，软件经理通常缺少安托万大厨那样的有礼貌的固执。</li>
 <li>对进度缺少监控。</li>
 <li>当意识到进度有偏移时，下意识（以及传统）的反应是增加人力。</li>
 </ul>
-</li>
-</ol>
-<h2 id="人月神话"><a href="#人月神话" class="headerlink" title="人月神话"></a>人月神话</h2><ol>
-<li>缺乏合理的进度安排是造成项目滞后的最主要原因，它比其他所有因素加起来的影响还要大。</li>
-<li>所有的编程人员都是乐观主义者：“一切都将运作良好”。</li>
-<li>由于编程人员通过纯粹的思维活动来开发，我们期待在实现过程中不会遇到困难。</li>
-<li>但是，我们的构思本身是有缺陷的，因此总会有bug。</li>
-<li>围绕着成本核算的估计技术，混淆了工作量和项目进展。</li>
-<li>人月是危险和带有欺骗性的神话，因为它暗示人员数量和时间是可以相互替换的。</li>
-<li>在若干人员中分解任务会引发额外的沟通工作量——培训和相互沟通。</li>
-<li>关于进度安排，我的经验是1&#x2F;3计划、1&#x2F;6编码、1&#x2F;4构件测试以及1&#x2F;4系统测试。</li>
-<li>作为一门学科，我们缺乏数据估计。</li>
-<li>我们对自己的估计技术不确定，因此在管理和客户的压力下，我们常常缺乏坚持的勇气。</li>
-<li>Brooks法则：向进度落后的软件项目增加人手，会使进度更加落后。（Adding manpower to a late software project makes it later.）</li>
-</ol>
-<h2 id="外科手术团队"><a href="#外科手术团队" class="headerlink" title="外科手术团队"></a>外科手术团队</h2><ul>
-<li></li>
-</ul>
-<h2 id="贵族制、民主制和系统设计"><a href="#贵族制、民主制和系统设计" class="headerlink" title="贵族制、民主制和系统设计"></a>贵族制、民主制和系统设计</h2><ol>
-<li>概念完整性是系统设计中最重要的考虑因素。</li>
-<li>功能与理解上的复杂程度的比值才是系统设计的最终测试标准，而不仅仅是丰富的功能。</li>
-</ol>
-<h2 id="第二系统效应"><a href="#第二系统效应" class="headerlink" title="第二系统效应"></a>第二系统效应</h2><ol>
-<li>尽早交流和持续沟通能使架构师有较好的成本意识，使开发人员获得对设计的信心，并且不会混淆各自的责任分工。</li>
-<li>想到成功，架构师必须做到以下几点：<ul>
+<p>缺乏合理的进度安排是造成项目滞后的最主要原因，它比其他所有因素加起来的影响还要大。</p>
+<p>人月是危险和带有欺骗性的神话，因为它暗示人员数量和时间是可以相互替换的。</p>
+<p>在若干人员中分解任务会引发额外的沟通工作量——培训和相互沟通。</p>
+<p>关于进度安排，我的经验是1&#x2F;3计划、1&#x2F;6编码、1&#x2F;4构件测试以及1&#x2F;4系统测试。</p>
+<p>Brooks法则：向进度落后的软件项目增加人手，会使进度更加落后。（Adding manpower to a late software project makes it later.）</p>
+<p>尽早交流和持续沟通能使架构师有较好的成本意识，使开发人员获得对设计的信心，并且不会混淆各自的责任分工。</p>
+<p>想到成功，架构师必须做到以下几点：</p>
+<ul>
 <li>牢记是建造人员对实现有创造性和发明性的责任，所以架构师只是建议，而不是下指令；</li>
 <li>时刻准备好提出实现所指定事物的方法，同样准备接受其他任何能达到目标的方法；</li>
 <li>对上述建议保持低调和不公开；</li>
 <li>准备放弃所坚持的改进建议；</li>
 <li>听取开发人员在体系结构上的改进建议。</li>
 </ul>
-</li>
-<li>在开发第一个作品时，架构师倾向于精炼和简洁。他知道自己对正在进行的任务不够了解，所以会谨慎、仔细地工作。</li>
-<li>在开发第一个作品时，他会对面不断产生的装饰和润色功能。这些功能都被留存在一边，以备“下次”使用。</li>
-<li>第二个系统是一个人所设计过的最危险的系统。而当他着手三个及以后的系统时，先前的经验会相互验证，得到对此类系统通用特性的判断，而且系统之间的差异会帮助他识别出经验中不够通用的部分。</li>
-<li>一种普遍倾向是过度设计第二个系统，向系统添加很多修饰功能和想法，它们曾在第一个系统中被小心谨慎地放在一旁。</li>
-<li>第二个系统效应的另一个表现于纯粹的功能修饰有所不同，也就是说存在对某些技术进行细化、精炼的趋势。由于基本系统设想发生了变化，这些技术已经显得落后。</li>
-<li>架构师如何避免开发第二系统效应？显然，他无法跳过第二个系统，但他可以有意识地关注这个系统的特殊危险，并加以额外的自我约束，来避免那些对功能的过多修饰，并避免延伸出会因假设和目的的变化而废除的功能。</li>
-<li>项目经理如何避免第二系统效应？他要坚持要求，资深架构师至少有两个系统的经验。同时，保持对特殊诱惑的警觉，他可以提出正确的问题，确保原则上的概念和目标在详细设计中得到完整的体现。</li>
-</ol>
-<h2 id="转递消息"><a href="#转递消息" class="headerlink" title="转递消息"></a>转递消息</h2><p>一句古老的格言警告说：“不要携带两个时钟出海，而是带一个或三个。”同样的原则也适用于形式化和记叙性定义。如果同时具有两种方式，则必须以一种作为标准，另一种作为辅助描述，并照此明确地进行划分。这两者的任何一个都可以作为主要标准。</p>
-<h2 id="为什么巴别塔会失败"><a href="#为什么巴别塔会失败" class="headerlink" title="为什么巴别塔会失败"></a>为什么巴别塔会失败</h2><ol>
-<li>巴别塔项目的失败是因为缺乏交流以及交流的结果——组织。</li>
-<li>组织，是成功的关键。交流和组织的技能需要管理者付出大量思考，并具备与软件技术本身同等丰富的经验能力。</li>
-<li>因为左手不知道右手在做什么，从而进度灾难、功能的不合理和系统缺陷纷纷出现。“由于存在对其他人的各种假设，团队成员之间的理解开始出现偏差。</li>
-<li>团队应该以尽可能多的方式进行相互之间的交流：非正式地进行简要技术陈述的常规项目会议，共享的正式项目工作手册。</li>
-<li>项目工作手册不是独立的一篇文档，它是对项目必须产生的一系列文档进行组织的一种结构。</li>
-<li>每一位团队人员应该了解所有的材料（工作手册）。</li>
-<li>团队组织的目标是为了减少必要的交流和协作量。</li>
-<li>为了减少交流，组织结构包括了人力划分（division of labor）和限定职责范围（specialization of function）。</li>
-<li>组织中的交流是网状，而不是树状结构，因此所有的特殊组织机制都是为了进行调整，以克服树状组织结构中交流缺乏的困难。</li>
-<li>每个子项目具有两个领导角色——制作人，技术总监或架构师。这两个角色的职责有很大的区别，需要不同的技能。</li>
-</ol>
-<h2 id="胸有成竹"><a href="#胸有成竹" class="headerlink" title="胸有成竹"></a>胸有成竹</h2><ul>
-<li></li>
-</ul>
-<h2 id="削足适履"><a href="#削足适履" class="headerlink" title="削足适履"></a>削足适履</h2><ol>
-<li>除了运行时间以外，程序所占据的内存空间也是主要开销。特别师对于操作系统，它的很多程序是永久驻留在内存中的。</li>
-<li>即便如此，花费在驻留程序所占据内存上的金钱仍是物有所值的，比其他任何在配置上投资的效果都要好。规模本身不是坏事，但不必要的规模是不可取的。</li>
-<li>软件开发人员必须设立规模目标，控制规模，发明一些减少规模的方法——就如同硬件开发人员为减少元器件所做的事情一样。</li>
-<li>规模预算不仅仅在占据内存方面是明确的，同时还应该指明程序对磁盘的访问次数。</li>
-<li>规模预算必须与分配的功能相关联；在知名模块大小的同时，确切定义模块的功能。</li>
-<li>在大型团队中，各个小组倾向于不断地局部优化，以满足自己的目标，而较少考虑对用户的整体影响。这种方向性的问题是大型项目的主要危险。</li>
-<li>从系统整体出发以及面向用户的态度是软件编程管理人员最重要的职能。</li>
-<li>在早期应该制定策略，以决定用户可选项目的粗细程度，因为将它们作为整体打包能够节省内存空间。</li>
-<li>为了取得良好的空间—时间折中，开发队伍需要得到特定的某种语言或者机型的编程技能培训，特别是在使用新语言或者新机器时。</li>
-<li>精炼、充分和快速的程序往往是战略性突破的结果，而不仅仅是技巧上的提高。</li>
-<li>更普遍的是，战略上的突破常来自于对数据或表的重新表达。<strong>数据的表现形式是编程的根本。</strong></li>
-</ol>
-<h2 id="提纲契领"><a href="#提纲契领" class="headerlink" title="提纲契领"></a>提纲契领</h2><ul>
-<li></li>
-</ul>
-<h2 id="未雨绸缪"><a href="#未雨绸缪" class="headerlink" title="未雨绸缪"></a>未雨绸缪</h2><ol>
-<li>对于大多数项目，第一次开发的系统并不合用。它可能太慢、太大，而且难以使用，或者三者兼而有之。</li>
-<li>要解决所有的问题，除了重新开发一个更灵巧或者更好的系统以外，没有其他的办法。系统的丢弃和重新设计可以一步完成，也可以一块块地实现。所有大型系统的经验都显示，这是必须完成的步骤。而且，新的系统概念或新技术会不断出现，必须构建一个用来抛弃的系统，因为即使是最优秀的项目经理，也不能无所不知地在项目最初解决这些问题。</li>
-<li>管理上的问题不再是“是否构建一个试验性的系统，然后抛弃它”，而是必须这样做。现在的问题是“是否预先计划抛弃原型的开发，或者是否将该原型发布给用户”，从这个角度看待问题，答案更加清晰。将原型发布给用户，可以获得时间，但是它的代价高昂——对于用户，使用起来极度痛苦；对于重新开发的人员，分散了精力；对于产品，影响了声誉，即使最好的再设计也难以挽回名声。</li>
-<li>因此，为舍弃而计划，无论如何，你一定要这样做。</li>
-<li>一旦认识到试验性的系统必须被构建和丢弃，具有变更思想的重新设计将不可避免，那么，面对整个变化现象就是非常有用的。第一步是接受这样的事实：变化是与生俱来的，不是不合时宜和令人生厌的异常情况。</li>
-<li>程序员不愿意为设计书写文档，不仅仅是因为惰性，更多的是源于设计人员的踌躇——要为自己尝试性的设计决策进行辩解。</li>
-<li>只要管理人员和技术人才的天赋允许，老板必须对他们的能力培养给予极大的关注，使管理人员和技术人员具有互换性；特别是希望在技术和管理角色之间自由地分配人手的时候。</li>
-<li>具有两条晋升线的高效组织机构存在一些社会性的障碍，人们必须警惕并积极地同它做持续的斗争。</li>
-<li>很容易为不同的晋升线建立相互一致的薪水级别，但同等威信的建立需要一些强烈的心理措施：相同的办公室、一样的支持以及技术调动的优先补偿。</li>
-<li>组件外科手术队伍式的软件开发团队是对上述问题所有方面的彻底冲击。对于灵活组织架构问题，这的确是一个长期行之有效的解决方案。</li>
-</ol>
-<h2 id="干将莫邪"><a href="#干将莫邪" class="headerlink" title="干将莫邪"></a>干将莫邪</h2><ul>
-<li></li>
-</ul>
-<h2 id="整体部分"><a href="#整体部分" class="headerlink" title="整体部分"></a>整体部分</h2><ul>
-<li></li>
-</ul>
-<h2 id="祸起萧墙"><a href="#祸起萧墙" class="headerlink" title="祸起萧墙"></a>祸起萧墙</h2><ol>
-<li>一天一天的进度落后比起重大灾难更难以识别，更不容易防范和更加难以弥补。</li>
-<li>根据一个严格的进度表来控制大型项目的第一个步骤是制定进度表，进度表由里程碑和日期组成。</li>
-<li>里程碑必须是具体的、特定的和可度量的事件，能进行清晰的定义。</li>
-<li>如果里程牌定义得非常明确，以至于无法自欺欺人时，程序员很少会就里程牌的进展弄虚作假。</li>
-<li>对于大型项目，一个对里程牌报告进行维护的计划和控制小组是非常可贵的。</li>
-</ol>
-<h2 id="另外一面"><a href="#另外一面" class="headerlink" title="另外一面"></a>另外一面</h2><ol>
-<li>培训和管理人员基本上没有向编程人员成功地灌输对待文档的积极态度——文档能在整个生命周期对克服懒惰和进度的压力起促进和激励作用。</li>
-<li>大多数文档只提供了很少的总结性内容。必须放慢脚步，稳妥地进行。</li>
-<li>为了使文档易于维护，将它们合并至源程序是至关重要的，而不是作为独立文档进行保存。</li>
-<li>最小化文档担负的三个关键思路：<ul>
-<li>借助那些必须存在的语句，如名称和声明等，来附加尽可能多的“文档”信息；</li>
-<li>使用空格和格式来表现丛书从属和嵌套关系，提高程序的可读性；</li>
-<li>以段落注释，特别是模块标题的形式，向程序中插入必要的记叙性文字。</li>
-</ul>
-</li>
-<li>程序修改人员所使用的文档中，除了描述事情如何，还应阐述它为什么那样。对于加深理解，目的是非常关键的，即使是高级语言的语法，也不能表达目的。</li>
-</ol>
-<h2 id="没有银弹"><a href="#没有银弹" class="headerlink" title="没有银弹"></a>没有银弹</h2><ol>
-<li>“在未来的十年内，无论是在技术上还是在管理方法上，都看不出有任何突破性的进步，能够保证在十年内大幅度地提高软件的生产率、可靠性和简洁性。”</li>
-<li>软件开发中困难的部分是规格说明、设计和测试这些概念上的结构，而不是对概念进行表达和对实现逼真程序进行验证。</li>
-</ol>
+<p>在开发第一个作品时，架构师倾向于精炼和简洁。他知道自己对正在进行的任务不够了解，所以会谨慎、仔细地工作。</p>
+<p>在开发第一个作品时，他会对面不断产生的装饰和润色功能。这些功能都被留存在一边，以备“下次”使用。</p>
+<p>第二个系统是一个人所设计过的最危险的系统。而当他着手三个及以后的系统时，先前的经验会相互验证，得到对此类系统通用特性的判断，而且系统之间的差异会帮助他识别出经验中不够通用的部分。</p>
+<p>一种普遍倾向是过度设计第二个系统，向系统添加很多修饰功能和想法，它们曾在第一个系统中被小心谨慎地放在一旁。</p>
+<p>第二个系统效应的另一个表现于纯粹的功能修饰有所不同，也就是说存在对某些技术进行细化、精炼的趋势。由于基本系统设想发生了变化，这些技术已经显得落后。</p>
+<p>架构师如何避免开发第二系统效应？显然，他无法跳过第二个系统，但他可以有意识地关注这个系统的特殊危险，并加以额外的自我约束，来避免那些对功能的过多修饰，并避免延伸出会因假设和目的的变化而废除的功能。</p>
+<p>项目经理如何避免第二系统效应？他要坚持要求，资深架构师至少有两个系统的经验。同时，保持对特殊诱惑的警觉，他可以提出正确的问题，确保原则上的概念和目标在详细设计中得到完整的体现。</p>
+<p>一句古老的格言警告说：“不要携带两个时钟出海，而是带一个或三个。”同样的原则也适用于形式化和记叙性定义。如果同时具有两种方式，则必须以一种作为标准，另一种作为辅助描述，并照此明确地进行划分。这两者的任何一个都可以作为主要标准。</p>
+<p>组织，是成功的关键。交流和组织的技能需要管理者付出大量思考，并具备与软件技术本身同等丰富的经验能力。</p>
+<p>因为左手不知道右手在做什么，从而进度灾难、功能的不合理和系统缺陷纷纷出现。“由于存在对其他人的各种假设，团队成员之间的理解开始出现偏差。</p>
+<p>团队应该以尽可能多的方式进行相互之间的交流：非正式地进行简要技术陈述的常规项目会议，共享的正式项目工作手册。</p>
+<p>除了运行时间以外，程序所占据的内存空间也是主要开销。特别师对于操作系统，它的很多程序是永久驻留在内存中的。</p>
+<p>即便如此，花费在驻留程序所占据内存上的金钱仍是物有所值的，比其他任何在配置上投资的效果都要好。规模本身不是坏事，但不必要的规模是不可取的。</p>
+<p>软件开发人员必须设立规模目标，控制规模，发明一些减少规模的方法——就如同硬件开发人员为减少元器件所做的事情一样。</p>
+<p>在大型团队中，各个小组倾向于不断地局部优化，以满足自己的目标，而较少考虑对用户的整体影响。这种方向性的问题是大型项目的主要危险。</p>
+<p>一旦认识到试验性的系统必须被构建和丢弃，具有变更思想的重新设计将不可避免，那么，面对整个变化现象就是非常有用的。第一步是接受这样的事实：变化是与生俱来的，不是不合时宜和令人生厌的异常情况。</p>
+<p>程序员不愿意为设计书写文档，不仅仅是因为惰性，更多的是源于设计人员的踌躇——要为自己尝试性的设计决策进行辩解。</p>
+<p>只要管理人员和技术人才的天赋允许，老板必须对他们的能力培养给予极大的关注，使管理人员和技术人员具有互换性；特别是希望在技术和管理角色之间自由地分配人手的时候。</p>
+<p>具有两条晋升线的高效组织机构存在一些社会性的障碍，人们必须警惕并积极地同它做持续的斗争。</p>
+<p>一天一天的进度落后比起重大灾难更难以识别，更不容易防范和更加难以弥补。</p>
+<p>根据一个严格的进度表来控制大型项目的第一个步骤是制定进度表，进度表由里程碑和日期组成。</p>
+<p>里程碑必须是具体的、特定的和可度量的事件，能进行清晰的定义。</p>
 
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://s1san.github.io/2025/01/10/%E8%BD%AF%E4%BB%B6%E4%BD%95%E4%BB%A5%E4%B8%BA%E5%B7%A5%E7%A8%8B/" data-id="cmnx6faji000kp4c07bxk8lnt" data-title="软件何以为工程" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a></li></ul>
 
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag"># 软件工程</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2024/10/01/Hello,%20My%20Blog!/" rel="prev" title="Hello, My Blog!">
-      <i class="fa fa-chevron-left"></i> Hello, My Blog!
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/06/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BD%95%E4%BB%A5%E4%B8%BA%E8%89%BA%E6%9C%AF%E5%AE%B6/" rel="next" title="程序员何以为艺术家">
-      程序员何以为艺术家 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%84%A6%E6%B2%B9%E5%9D%91"><span class="nav-number">1.</span> <span class="nav-text">焦油坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D"><span class="nav-number">2.</span> <span class="nav-text">人月神话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E7%A7%91%E6%89%8B%E6%9C%AF%E5%9B%A2%E9%98%9F"><span class="nav-number">3.</span> <span class="nav-text">外科手术团队</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%B5%E6%97%8F%E5%88%B6%E3%80%81%E6%B0%91%E4%B8%BB%E5%88%B6%E5%92%8C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">贵族制、民主制和系统设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%B3%BB%E7%BB%9F%E6%95%88%E5%BA%94"><span class="nav-number">5.</span> <span class="nav-text">第二系统效应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E9%80%92%E6%B6%88%E6%81%AF"><span class="nav-number">6.</span> <span class="nav-text">转递消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B7%B4%E5%88%AB%E5%A1%94%E4%BC%9A%E5%A4%B1%E8%B4%A5"><span class="nav-number">7.</span> <span class="nav-text">为什么巴别塔会失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%B8%E6%9C%89%E6%88%90%E7%AB%B9"><span class="nav-number">8.</span> <span class="nav-text">胸有成竹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8A%E8%B6%B3%E9%80%82%E5%B1%A5"><span class="nav-number">9.</span> <span class="nav-text">削足适履</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E7%BA%B2%E5%A5%91%E9%A2%86"><span class="nav-number">10.</span> <span class="nav-text">提纲契领</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E9%9B%A8%E7%BB%B8%E7%BC%AA"><span class="nav-number">11.</span> <span class="nav-text">未雨绸缪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B2%E5%B0%86%E8%8E%AB%E9%82%AA"><span class="nav-number">12.</span> <span class="nav-text">干将莫邪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E9%83%A8%E5%88%86"><span class="nav-number">13.</span> <span class="nav-text">整体部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%B8%E8%B5%B7%E8%90%A7%E5%A2%99"><span class="nav-number">14.</span> <span class="nav-text">祸起萧墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A6%E5%A4%96%E4%B8%80%E9%9D%A2"><span class="nav-number">15.</span> <span class="nav-text">另外一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89%E9%93%B6%E5%BC%B9"><span class="nav-number">16.</span> <span class="nav-text">没有银弹</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">s1san</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/s1san" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;s1san" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">s1san</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/06/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BD%95%E4%BB%A5%E4%B8%BA%E8%89%BA%E6%9C%AF%E5%AE%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          程序员何以为艺术家
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/10/01/%E5%BC%80%E5%A7%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">开始</div>
+    </a>
+  
+</nav>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
+</article>
 
 
-<script src="/js/schemes/pisces.js"></script>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%87%A0%E4%BD%95%E6%BC%AB%E8%B0%88/">几何漫谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
 
 
-<script src="/js/next-boot.js"></script>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/README/" rel="tag">README</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95/" rel="tag">平面几何</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%BF%E6%B2%BB/" rel="tag">政治</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E6%B5%8E/" rel="tag">经济</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li></ul>
+    </div>
+  </div>
 
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/README/" style="font-size: 20px;">README</a> <a href="/tags/%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95/" style="font-size: 10px;">平面几何</a> <a href="/tags/%E6%94%BF%E6%B2%BB/" style="font-size: 10px;">政治</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">游戏开发</a> <a href="/tags/%E7%BB%8F%E6%B5%8E/" style="font-size: 10px;">经济</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">二月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/01/">一月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">十二月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">六月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">十月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/02/24/%E6%9E%AF%E8%8D%A3/">枯荣</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/27/%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95%E6%80%BB%E7%BB%93%E7%AF%87/">平面几何总结篇</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/26/%E7%8E%8B%E6%9C%9D%E7%AE%97%E6%B3%95/">王朝算法</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/19/%E4%B9%A6%E5%8D%95/">书单</a>
+          </li>
+        
+          <li>
+            <a href="/2026/01/18/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E5%B8%88/">游戏设计师</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 s1san<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
 
 
 
   
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
+  </div>
 </body>
 </html>
